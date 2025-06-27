@@ -1,25 +1,72 @@
-Este módulo permite:
-✅ Registrar trabajos diarios con firmas digitales de clientes y empleados
-✅ Controlar materiales utilizados, horarios y desplazamientos
-✅ Validar cada jornada con mínimo 3 fotos de evidencia
-✅ Generar reportes PDF profesionales
+Parte de Trabajo – Módulo Odoo
+Este módulo permite generar y gestionar partes de trabajo en Odoo, asociados a obras, clientes y empleados. Incluye campos personalizados para capturar información clave como materiales, medidas, jornadas, observaciones, firmas y más. También genera un PDF con el diseño específico de los partes.
 
-🔧 Características clave
-Flujo de trabajo con estados (Borrador/En progreso/Finalizado)
+📦 Requisitos
+Odoo 16 o superior
 
-Integración con Partners (clientes) y módulo HR (empleados)
+Acceso como usuario administrador
 
-Validaciones automáticas para datos completos
-
-Sistema de aprobación con firmas digitales
+Conocimientos básicos de instalación de módulos Odoo
 
 🚀 Instalación
-Agregar módulo a la carpeta de complementos de Odoo
+1. Clona el repositorio
+bash
+Copiar
+Editar
+cd /ruta/a/tu/odoo/custom/addons/
+git clone https://github.com/nicomesa230/parte_de_trabajo.git
+2. Reinicia el servidor de Odoo
+Si estás utilizando Odoo en modo desarrollo:
 
-Instalar desde Apps buscando "Hojas de Trabajo"
+bash
+Copiar
+Editar
+./odoo-bin -d tu_base_de_datos -u parte_trabajo
+O bien, reinicia el servicio si lo tienes en producción:
 
-Perfecto para empresas de construcción, mantenimiento y servicios técnicos que necesitan documentar trabajos en campo.
+bash
+Copiar
+Editar
+sudo service odoo restart
+3. Activa el modo desarrollador
+Accede a Odoo con un usuario administrador.
 
-Licencia: LGPL-3
+Ve a Ajustes > Activar el modo desarrollador (en el menú de usuario, arriba a la derecha).
 
-*Desarrollado para Odoo 16 - Compatible con versiones posteriores*
+4. Instala el módulo
+Ve a Aplicaciones.
+
+Haz clic en Actualizar lista de aplicaciones (icono con forma de escudo en la parte superior).
+
+Busca Parte de Trabajo.
+
+Haz clic en Instalar.
+
+🛠️ Uso
+Ve al nuevo menú Parte de Trabajo.
+
+Crea un nuevo parte completando:
+
+Cliente, Obra, Sistema, Serie
+
+Jornadas y Empleados
+
+Materiales usados
+
+Medidas (ancho, alto, longitud…)
+
+Observaciones y Fotos
+
+Puedes subir firmas del cliente y del operario.
+
+Al guardar, puedes generar un PDF personalizado desde el botón de impresión en la parte superior derecha.
+
+🧾 Reporte PDF
+El módulo incluye un reporte PDF con diseño personalizado que replica un parte de trabajo con todos los datos capturados, incluyendo firmas y fotos incrustadas.
+
+📞 Soporte
+Para dudas, errores o sugerencias, puedes abrir un issue o contactar directamente al desarrollador:
+
+Autor: Nicolás Mesa
+Email: nico.mesa230@gmail.com
+
