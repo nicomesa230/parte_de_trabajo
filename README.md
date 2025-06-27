@@ -10,23 +10,13 @@ Conocimientos básicos de instalación de módulos Odoo
 
 🚀 Instalación
 1. Clona el repositorio
-bash
-Copiar
-Editar
 cd /ruta/a/tu/odoo/custom/addons/
 git clone https://github.com/nicomesa230/parte_de_trabajo.git
 2. Reinicia el servidor de Odoo
 Si estás utilizando Odoo en modo desarrollo:
-
-bash
-Copiar
-Editar
 ./odoo-bin -d tu_base_de_datos -u parte_trabajo
 O bien, reinicia el servicio si lo tienes en producción:
 
-bash
-Copiar
-Editar
 sudo service odoo restart
 3. Activa el modo desarrollador
 Accede a Odoo con un usuario administrador.
@@ -68,5 +58,5 @@ El módulo incluye un reporte PDF con diseño personalizado que replica un parte
 Para dudas, errores o sugerencias, puedes abrir un issue o contactar directamente al desarrollador:
 
 Autor: Nicolás Mesa
-Email: nico.mesa230@gmail.com
+Email: nicomesa230@gmail.com
 
