@@ -1,0 +1,46 @@
+<odoo>
+    
+    <record id="view_hoja_trabajo_line_form" model="ir.ui.view">
+        <field name="name">hoja.trabajo.line.form</field>
+        <field name="model">hoja.trabajo.line</field>
+        <field name="arch" type="xml">
+            <form string="Detalle de trabajo">
+                <header>
+                    <button name="action_validar" string="✅Validar día" type="object" states="pendiente"/>
+                    <button name="action_rechazar" string="❌Rechazar día" type="object" states="pendiente"/>
+                    <field name="state" widget="statusbar" statusbar_visible="pendiente,validado,rechazado"/>
+                </header>
+                <sheet>
+                    <group string="Jornada">
+                        <field name="state" readonly="1"/>
+                        <field name="fecha"/>
+                        <field name="entrada_am" widget="time"/>
+                        <field name="salida_am" widget="time"/>
+                        <field name="entrada_pm" widget="time"/>
+                        <field name="salida_pm" widget="time"/>
+                        <field name="desplazamiento" widget="time"/>
+                    </group>
+                    <group string="Empleado y Montaje">
+                        <field name="empleado_id"/>
+                        <field name="zona_montaje"/>
+                        <field name="notas_montaje"/>
+                    </group>
+                    <group string="Observaciones">
+                        <field name="observaciones"/>
+                    </group>
+                    <group string="Materiales utilizados en la obra">
+                        <field name="material_ids"/>
+                    </group>
+                    <group string="Imágenes del trabajo">
+                        <field name="imagen_ids">
+                            <tree editable="bottom">
+                                <field name="image"/>
+                                <field name="descripcion"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,57 @@
+<odoo>
+    <record id="view_parte_trabajo_search" model="ir.ui.view">
+        <field name="name">parte.trabajo.search</field>
+        <field name="model">parte.trabajo</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Hojas de Trabajo">
+
+                <!-- Búsqueda básica -->
+                <field name="cliente_id" string="Cliente"/>
+                <field name="obra_id" string="Obra"/>
+                <field name="sistema"/>
+                <field name="npcl"/>
+                <field name="trabajo_realizar"/>
+                <field name="state"/>
+
+                <separator/>
+
+                <!-- Filtros por firmas -->
+                <filter string="Con firma montador" name="firma_montador_si"
+                        domain="[('firma_montador', '!=', False)]"/>
+                <filter string="Sin firma montador" name="firma_montador_no"
+                        domain="[('firma_montador', '=', False)]"/>
+                <filter string="Con firma cliente" name="firma_cliente_si"
+                        domain="[('firma_cliente', '!=', False)]"/>
+                <filter string="Sin firma cliente" name="firma_cliente_no"
+                        domain="[('firma_cliente', '=', False)]"/>
+                <filter string="Firmas completas" name="firmas_completas"
+                        domain="[('firma_montador', '!=', False), ('firma_cliente', '!=', False)]"/>
+
+                <separator/>
+
+                <!-- Filtros de fechas -->
+                <filter string="Últimos 7 días" name="ultimos_7"
+                        domain="[('create_date', '>=', (context_today() - datetime.timedelta(days=7)))]"/>
+                <filter string="Este mes" name="este_mes"
+                        domain="[('create_date', '>=', (context_today().replace(day=1)))]"/>
+
+                <separator/>
+
+                <!-- Agrupaciones -->
+                <group expand="1" string="Agrupar por">
+                    <filter string="Cliente" name="group_cliente"
+                            context="{'group_by': 'cliente_id'}"/>
+                    <filter string="Obra" name="group_obra"
+                            context="{'group_by': 'obra_id'}"/>
+                    <filter string="Sistema" name="group_sistema"
+                            context="{'group_by': 'sistema'}"/>
+                    <filter string="Estado" name="group_estado"
+                            context="{'group_by': 'state'}"/>
+                    <filter string="Fecha creación" name="group_create_date"
+                            context="{'group_by': 'create_date:day'}"/>
+                </group>
+
+            </search>
+        </field>
+    </record>
+</odoo>

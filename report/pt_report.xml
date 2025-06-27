@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <template id="report_parte_trabajo_document">
+    <t t-call="web.basic_layout">
+      <main style="margin: 0; padding: 0;">
+        <t t-set="company" t-value="res_company"/>
+        <t t-foreach="docs" t-as="parte">
+          <div style="font-family: 'DejaVu Sans'; font-size: 14px; line-height: 1.6; width: 100%;">
+
+            <!-- Cabecera -->
+            <div style="display: flex; align-items: center; border-bottom: 2px solid #d00; padding-bottom: 16px; margin-bottom: 24px;">
+              <img t-att-src="'/web/image/res.company/%s/logo' % (res_company.id)" style="height: 60px; margin-right: 20px;"/>
+              <div>
+                <strong style="font-size: 20px;">prueba</strong><br/>
+                <span style="font-size: 14px;">Parte de trabajo n. <strong>PT<t t-esc="parte.id"/></strong></span><br/>
+                <span>info de la empresa (que hace)</span><br/>
+                <span>calle de la empresa</span><br/>
+                <span>info de la empresa (correo, telefono, etc)</span>
+              </div>
+            </div>
+
+            <!-- Datos generales -->
+            <table width="100%" border="1" style="border-collapse: collapse; margin-bottom: 24px;">
+              <tr>
+                <td><strong>Cliente:</strong> <t t-esc="parte.cliente_id.name or 'No disponible'"/></td>
+                <td><strong>Oferta:</strong> <t t-esc="parte.oferta or 'No disponible'"/></td>
+                <td><strong>Obra:</strong> <t t-esc="parte.obra_id.nombre or 'No disponible'"/></td>
+                <td><strong>Sistema:</strong> <t t-esc="parte.sistema or 'No disponible'"/></td>
+              </tr>
+              <tr>
+                <td colspan="2"><strong>Trabajo a realizar:</strong> <t t-esc="parte.trabajo_realizar or 'No disponible'"/></td>
+                <td><strong>N. serie:</strong> <t t-esc="parte.n_serie or 'No disponible'"/></td>
+                <td><strong>Altura:</strong> <t t-esc="parte.altura or 'No disponible'"/> m</td>
+              </tr>
+              <tr>
+                <td><strong>Longitud:</strong> <t t-esc="parte.longitud or 'No disponible'"/> m</td>
+                <td colspan="3"><strong>N.P.C.L.:</strong> <t t-esc="parte.npcl or 'No disponible'"/></td>
+              </tr>
+            </table>
+
+            <table width="100%" border="1" style="border-collapse: collapse; margin-bottom: 24px;">
+              <tr style="background-color: #d00; color: #fff;">
+                <th style="padding: 8px;">ZONA DE MONTAJE</th>
+                <th style="padding: 8px;">NOTAS</th>
+              </tr>
+              <t t-foreach="parte.line_ids" t-as="linea">
+                <tr>
+                  <td style="padding: 6px;"><t t-esc="linea.zona_montaje or 'No disponible'"/></td>
+                  <td style="padding: 6px;"><t t-esc="linea.notas_montaje or 'Sin notas'"/></td>
+                </tr>
+              </t>
+            </table>
+
+            <table width="100%" border="1" style="border-collapse: collapse; margin-bottom: 24px;">
+              <tr style="background-color: #d00; color: #fff;">
+                <th style="padding: 8px;">FECHA</th>
+                <th style="padding: 8px;">ENTRADA/SALIDA (AM)(H)</th>
+                <th style="padding: 8px;">ENTRADA/SALIDA (PM)(H)</th>
+                <th style="padding: 8px;">DESPLAZAMIENTO(H)</th>
+                <th style="padding: 8px;">NOMBRE Y APELLIDO</th>
+              </tr>
+              <t t-foreach="parte.line_ids" t-as="linea">
+                <tr>
+                  <td style="padding: 6px;"><t t-esc="linea.fecha or 'No disponible'"/></td>
+                  <td style="padding: 6px;">
+                    <t t-if="linea.entrada_am is not None">
+                      <t t-esc="'%02d:%02d' % (int(linea.entrada_am), int((linea.entrada_am % 1) * 60))"/>
+                    </t>
+                    <t t-if="linea.entrada_am is None">No disponible</t>
+                    -
+                    <t t-if="linea.salida_am is not None">
+                      <t t-esc="'%02d:%02d' % (int(linea.salida_am), int((linea.salida_am % 1) * 60))"/>
+                    </t>
+                    <t t-if="linea.salida_am is None">No disponible</t>
+                  </td>
+                  <td style="padding: 6px;">
+                    <t t-if="linea.entrada_pm is not None">
+                      <t t-esc="'%02d:%02d' % (int(linea.entrada_pm), int((linea.entrada_pm % 1) * 60))"/>
+                    </t>
+                    <t t-if="linea.entrada_pm is None">No disponible</t>
+                    -
+                    <t t-if="linea.salida_pm is not None">
+                      <t t-esc="'%02d:%02d' % (int(linea.salida_pm), int((linea.salida_pm % 1) * 60))"/>
+                    </t>
+                    <t t-if="linea.salida_pm is None">No disponible</t>
+                  </td>
+                  <td style="padding: 6px;">
+                    <t t-if="linea.desplazamiento is not None">
+                      <t t-esc="'%02d:%02d' % (int(linea.desplazamiento), int((linea.desplazamiento % 1) * 60))"/>
+                    </t>
+                    <t t-if="linea.desplazamiento is None">No disponible</t>
+                  </td>
+                  <td style="padding: 6px;"><t t-esc="linea.empleado_id.name or 'No disponible'"/></td>
+                </tr>
+              </t>
+            </table>
+
+            <!-- Observaciones -->
+            <h3 style="margin-top: 24px;">Observaciones</h3>
+            <t t-foreach="parte.line_ids" t-as="linea">
+              <p style="margin-bottom: 12px;">
+                <strong><t t-esc="linea.fecha"/> - <t t-esc="linea.empleado_id.name or 'Empleado sin asignar'"/>:</strong><br/>
+                <t t-esc="linea.observaciones or 'Sin observaciones'"/>
+              </p>
+            </t>
+
+            <table width="100%" border="1" style="border-collapse: collapse;">
+              <tr>
+                <td style="padding: 8px; width: 33%;">
+                  <strong>Firma del montador/responsable:</strong><br/>
+                  <t t-if="parte.firma_montador">
+                    <img t-att-src="'data:image/png;base64,%s' % parte.firma_montador.decode()" style="height: 60px;"/>
+                  </t>
+                  <t t-if="not parte.firma_montador">Firma no disponible</t>
+                </td>
+                <td style="padding: 8px; width: 33%;">
+                  <strong>Firma del cliente:</strong><br/>
+                  <t t-if="parte.firma_cliente">
+                    <img t-att-src="'data:image/png;base64,%s' % parte.firma_cliente.decode()" style="height: 60px;"/>
+                  </t>
+                  <t t-if="not parte.firma_cliente">Firma no disponible</t>
+                </td>
+                <td style="padding: 8px;">
+                  <strong>Material o desperfectos:</strong><br/>
+                  <t t-set="materiales" t-value="[]"/>
+                  <t t-foreach="parte.line_ids" t-as="linea">
+                    <t t-set="materiales" t-value="materiales + [m.display_name for m in linea.material_ids]"/>
+                  </t>
+                  <p><t t-esc="', '.join(materiales) or 'No aplicable'"/></p>
+                </td>
+              </tr>
+            </table>
+
+          </div>
+        </t>
+      </main>
+    </t>
+  </template>
+</odoo>

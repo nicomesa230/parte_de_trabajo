@@ -1,0 +1,47 @@
+<odoo>
+    <record id="view_parte_trabajo_kanban" model="ir.ui.view">
+        <field name="name">parte.trabajo.kanban</field>
+        <field name="model">parte.trabajo</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_small_column">
+                <field name="cliente_id"/>
+                <field name="obra_id"/>
+                <field name="trabajo_realizar"/>
+                <field name="n_serie"/>
+                <field name="sistema"/>
+                <field name="obra_nombre"/>
+
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="o_kanban_card oe_kanban_global_click">
+                            <div class="o_kanban_header">
+                                <strong class="text-primary" style="font-size: 16px;">
+                                    <field name="obra_nombre"/>
+                                </strong>
+                            </div>
+
+                            <div class="mt8">
+                                <div>
+                                    <i class="fa fa-user text-muted"/> <strong>Cliente:</strong>
+                                    <field name="cliente_id"/>
+                                </div>
+                                <div>
+                                    <i class="fa fa-tools text-muted"/> <strong>Trabajo:</strong>
+                                    <field name="trabajo_realizar"/>
+                                </div>
+                                <div>
+                                    <i class="fa fa-barcode text-muted"/> <strong>Nº Serie:</strong>
+                                    <field name="n_serie"/>
+                                </div>
+                                <div>
+                                    <i class="fa fa-cubes text-muted"/> <strong>Sistema:</strong>
+                                    <field name="sistema"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+</odoo>

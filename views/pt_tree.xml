@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_parte_trabajo_tree" model="ir.ui.view">
+        <field name="name">parte.trabajo.tree</field>
+        <field name="model">parte.trabajo</field>
+        <field name="arch" type="xml">
+            <tree string="Hojas de Trabajo">
+                <field name="cliente_id"/>
+                <field name="obra_id"/>
+                <field name="trabajo_realizar"/>
+                <field name="sistema"/>
+                <field name="n_serie"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_parte_trabajo_user,Parte Trabajo User,model_parte_trabajo,base.group_user,1,1,1,0
+access_parte_trabajo_manager,Parte Trabajo Manager,model_parte_trabajo,base.group_system,1,1,1,1
+
+access_hoja_trabajo_line_user,Hoja Trabajo Line User,model_hoja_trabajo_line,base.group_user,1,1,1,0
+access_hoja_trabajo_line_manager,Hoja Trabajo Line Manager,model_hoja_trabajo_line,base.group_system,1,1,1,1
+
+access_hoja_trabajo_imagen_user,Hoja Trabajo Imagen User,model_hoja_trabajo_imagen,base.group_user,1,1,1,0
+access_hoja_trabajo_imagen_manager,Hoja Trabajo Imagen Manager,model_hoja_trabajo_imagen,base.group_system,1,1,1,1

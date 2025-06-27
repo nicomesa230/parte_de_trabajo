@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo de Hojas de Trabajo Diarias - Odoo</title>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+    <h1>Módulo de Hojas de Trabajo Diarias para Odoo</h1>
+        
+    <p>Este módulo gestiona el registro diario de actividades en obras y proyectos, con control de firmas, evidencias fotográficas y materiales utilizados.</p>
+    
+    <h2>Características Principales</h2>
+    <ul class="features">
+        <li>Registro completo de trabajos diarios con firmas digitales</li>
+        <li>Sistema de validación con mínimo 3 fotos por día de trabajo</li>
+        <li>Control de horarios y desplazamientos</li>
+        <li>Gestión de materiales utilizados en cada jornada</li>
+        <li>Flujos de trabajo configurables (borrador, en progreso, finalizado)</li>
+        <li>Generación de reportes en PDF</li>
+        <li>Integración con Partners (clientes) y módulo HR (empleados)</li>
+    </ul>
+    
+    <div class="model-structure">
+        <h3>Estructura del Módulo</h3>
+        <p><strong>1. parte.trabajo</strong>: Hoja principal de trabajo</p>
+        <p><strong>2. hoja.trabajo.line</strong>: Líneas diarias de trabajo</p>
+        <p><strong>3. hoja.trabajo.imagen</strong>: Imágenes de evidencia</p>
+    </div>
+    
+    <h2>Instalación</h2>
+    <ol>
+        <li>Instalar el módulo como cualquier otro módulo de Odoo</li>
+        <li>Reiniciar el servidor de Odoo</li>
+        <li>Actualizar la lista de módulos</li>
+        <li>Instalar el módulo</li>
+    </ol>
+    
+    <h2>Configuración</h2>
+    <p>Después de la instalación, el módulo está listo para usar. Se recomienda:</p>
+    <ul>
+        <li>Configurar empleados en el módulo HR</li>
+        <li>Tener clientes registrados como Partners</li>
+        <li>Configurar productos/materiales en el inventario</li>
+    </ul>
+    
+    <h2>Uso del Módulo</h2>
+    <ol>
+        <li>Crear una nueva hoja de trabajo asociada a un cliente</li>
+        <li>Añadir líneas diarias con horarios, materiales y observaciones</li>
+        <li>Subir mínimo 3 imágenes por día de trabajo</li>
+        <li>Registrar firmas del montador y cliente</li>
+        <li>Cambiar estados según progreso del trabajo</li>
+        <li>Generar reporte PDF cuando esté finalizado</li>
+    </ol>
+    
+    <h2>Validaciones Importantes</h2>
+    <ul>
+        <li>Campos obligatorios: Cliente, Obra, Fecha</li>
+        <li>Mínimo 3 imágenes por día de trabajo</li>
+        <li>Validación automática al guardar registros incompletos</li>
+    </ul>
+    
+    <h2>Notas para Desarrolladores</h2>
+    <p>El módulo utiliza:</p>
+    <ul>
+        <li>Campos computados para URLs de firmas</li>
+        <li>Validaciones con @api.constrains</li>
+        <li>Métodos para cambiar estados del workflow</li>
+        <li>Relaciones Many2one, One2many y Many2many</li>
+    </ul>
+    
+    <h2>Soporte</h2>
+    <p>Para soporte o solicitudes de características, contactar al mantenedor del módulo.</p>
+    
+    <p><strong>Licencia:</strong> LGPL-3</p>
+</body>
+</html>

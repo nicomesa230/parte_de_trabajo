@@ -1,0 +1,53 @@
+<odoo>
+    <record id="view_parte_trabajo_form" model="ir.ui.view">
+        <field name="name">parte.trabajo.form</field>
+        <field name="model">parte.trabajo</field>
+        <field name="arch" type="xml">
+            <form string="Parte de Trabajo">
+                <header>
+                    <button name="action_en_progreso" string="🔜Marcar en progreso" type="object" states="borrador"/>
+                    <button name="action_finalizar" string="✅Finalizar parte" type="object" states="en_progreso"/>
+                    <button name="action_cancelar" string="❌Cancelar parte" type="object" states="borrador,en_progreso"/>
+                    <button name="report_pt_pdf" string="📄Parte de trabajo pdf" type="object" class="btn-primary"/>
+                    <field name="state" widget="statusbar" statusbar_visible="borrador,en_progreso,finalizado,cancelado"/>
+                </header>
+                <sheet>
+                    <group col="4" string="Información General">
+                        <field name="state" readonly="1"/>
+                        <field name="cliente_id"/>
+                        <field name="obra_id"/>
+                        <field name="trabajo_realizar"/>
+                        <field name="n_serie"/>
+                    </group>
+
+                    <group col="4" string="Detalles Técnicos">
+                        <field name="altura"/>
+                        <field name="longitud"/>
+                        <field name="oferta"/>
+                        <field name="sistema"/>
+                        <field name="npcl"/>
+                    </group>
+
+
+                    <notebook>
+                        <page string="Días de trabajo">
+                            <field name="line_ids" context="{'default_hoja_id': active_id}">
+                                <tree>
+                                    <field name="fecha"/>
+                                    <field name="empleado_id"/>
+                                    <field name="notas_montaje"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Firma del montador">
+                            <field name="firma_montador" widget="signature"/>
+                        </page>
+                        <page string="Firma del cliente">
+                            <field name="firma_cliente" widget="signature"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

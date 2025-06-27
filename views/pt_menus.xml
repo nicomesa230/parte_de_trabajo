@@ -1,0 +1,18 @@
+<odoo>
+    <!-- Acción -->
+    <record id="action_parte_trabajo_all_views" model="ir.actions.act_window">
+        <field name="name">Parte de trabajo</field>
+        <field name="res_model">parte.trabajo</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="search_view_id" ref="view_parte_trabajo_kanban"/>
+    </record>
+
+    <!-- Menú raíz si no existe -->
+    <menuitem id="menu_root_pt" name="Parte de trabajo" sequence="10" web_icon="parte_de_trabajo,static/description/icon.png"/>
+
+    <!-- Submenú para órdenes de trabajo -->
+    <menuitem id="menu_parte_trabajo_main" name="Parte de trabajo"
+              parent="menu_root_pt"
+              action="action_parte_trabajo_all_views"
+              sequence="20"/>
+</odoo>
